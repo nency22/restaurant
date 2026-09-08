@@ -14,15 +14,15 @@ urlpatterns = [
         TokenRefreshView.as_view(),
         name='token_refresh'
     ),
-     # Swagger Schema
-    path('account/schema/',SpectacularAPIView.as_view(),name='schema'),
+    #  # Swagger Schema
+    # path('account/schema/',SpectacularAPIView.as_view(),name='schema'),
 
-    # Swagger UI
-    path('account/docs/',SpectacularSwaggerView.as_view(url_name='schema'),name='swagger-ui'),
+    # # Swagger UI
+    # path('account/docs/',SpectacularSwaggerView.as_view(url_name='schema'),name='swagger-ui'),
 
-    # ReDoc
-    path('account/redoc/',SpectacularRedocView.as_view(url_name='schema'),name='redoc'),
+    # # ReDoc
+    # path('account/redoc/',SpectacularRedocView.as_view(url_name='schema'),name='redoc'),
 
-    # Re_n@d2er
+    # # Re_n@d2er
 ]
 
