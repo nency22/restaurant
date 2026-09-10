@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'menu',
+    'order',
     'rest_framework_simplejwt',
     'rest_framework',
     'drf_spectacular',
