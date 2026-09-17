@@ -5,8 +5,8 @@ from drf_spectacular.views import (SpectacularAPIView,SpectacularSwaggerView,Spe
 
 
 urlpatterns = [
-    path('account/Register',RegisterView.as_view(), name='register'),
-    path('account/Login',LoginView.as_view(),name='login'),
+    path('account/Register',RegisterView.as_view(), name='Register'),
+    path('account/Login',LoginView.as_view(),name='Login'),
     path('account/profile',ProfileView.as_view(),name='profile'),
     path('account/Admin',AdminUsersView.as_view(),name='Admin'),
     path(
