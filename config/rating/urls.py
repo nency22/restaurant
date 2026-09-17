@@ -10,13 +10,13 @@ from .views import (
 urlpatterns = [
 
     path(
-        '',
+        'ratinglistcreate',
         RatingListCreateView.as_view(),
         name='rating-list-create'
     ),
 
     path(
-        '<int:pk>/',
+        'ratingdetail<int:pk>/',
         RatingDetailView.as_view(),
         name='rating-detail'
     ),
