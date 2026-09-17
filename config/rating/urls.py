@@ -1,0 +1,29 @@
+from django.urls import path
+
+from .views import (
+    RatingListCreateView,
+    RatingDetailView,
+    RatingSummaryView
+)
+
+
+urlpatterns = [
+
+    path(
+        '',
+        RatingListCreateView.as_view(),
+        name='rating-list-create'
+    ),
+
+    path(
+        '<int:pk>/',
+        RatingDetailView.as_view(),
+        name='rating-detail'
+    ),
+
+    path(
+        'summary/<int:menu_item_id>/',
+        RatingSummaryView.as_view(),
+        name='rating-summary'
+    ),
+]

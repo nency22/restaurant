@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'accounts',
     'menu',
     'order',
+    'rating',
     'rest_framework_simplejwt',
     'rest_framework',
     'drf_spectacular',

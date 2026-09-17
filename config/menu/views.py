@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from drf_spectacular.utils import extend_schema
 from rest_framework.parsers import MultiPartParser, FormParser
-
+from rest_framework.permissions import AllowAny
+from .permissions import IsAdmin
 from .models import (
     Category,
     MenuItem,
@@ -134,8 +135,15 @@ class CategoryDetailView(APIView):
 
 
 class MenuListCreateView(APIView):
+
     parser_classes = [MultiPartParser, FormParser]
 
+    def get_permissions(self):
+
+        if self.request.method == 'GET':
+            return [AllowAny()]
+
+        return [IsAdmin()]
 
     def get(self, request):
 
@@ -147,10 +155,11 @@ class MenuListCreateView(APIView):
         )
 
         return Response(serializer.data)
+
     @extend_schema(
         request=MenuItemSerializer,
-        responses=MenuItemSerializer)
-
+        responses=MenuItemSerializer
+    )
     def post(self, request):
 
         serializer = MenuItemSerializer(
@@ -170,8 +179,14 @@ class MenuListCreateView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
-
 class MenuDetailView(APIView):
+
+    def get_permissions(self):
+
+        if self.request.method == 'GET':
+            return [AllowAny()]
+
+        return [IsAdmin()]
 
     def get_object(self, pk):
 
@@ -194,9 +209,6 @@ class MenuDetailView(APIView):
         serializer = MenuItemSerializer(menu_item)
 
         return Response(serializer.data)
-    @extend_schema(
-            request=MenuItemSerializer,
-            responses=MenuItemSerializer)
 
     def put(self, request, pk):
 
@@ -266,8 +278,15 @@ class MenuDetailView(APIView):
         return Response(
             {"message": "Menu item deleted successfully"},
             status=status.HTTP_204_NO_CONTENT
-        )    
+        )
 class CustomizationListCreateView(APIView):
+
+    def get_permissions(self):
+
+        if self.request.method == 'GET':
+            return [AllowAny()]
+
+        return [IsAdmin()]
 
     def get(self, request, menu_item_id):
 
@@ -281,10 +300,6 @@ class CustomizationListCreateView(APIView):
         )
 
         return Response(serializer.data)
-    @extend_schema(
-    request=MenuItemCustomizationSerializer,
-    responses=MenuItemCustomizationSerializer
-)
 
     def post(self, request, menu_item_id):
 
@@ -310,9 +325,17 @@ class CustomizationListCreateView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
-
 class CustomizationDetailView(APIView):
+    
 
+    def get_permissions(self):
+
+        if self.request.method == 'GET':
+            return [AllowAny()]
+
+        return [IsAdmin()]
+
+   
     def get_object(self, pk):
 
         try:
