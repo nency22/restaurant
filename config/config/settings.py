@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://192.168.0.142:5174",
+   "http://localhost:5173/"
+   "http://192.168.0.142:5173/"
 ]
 
 
