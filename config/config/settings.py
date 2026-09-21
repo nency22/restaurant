@@ -53,10 +53,12 @@ INSTALLED_APPS = [
     'menu',
     'order',
     'rating',
+    'reservations',
     'rest_framework_simplejwt',
     'rest_framework',
     'drf_spectacular',
     'corsheaders',
+    'cloudinary',
 ]
 CORS_ALLOWED_ORIGINS = [
    "http://localhost:5173",

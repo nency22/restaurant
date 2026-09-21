@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
     name=models.CharField(max_length=100)
@@ -28,11 +29,12 @@ class MenuItem(models.Model):
         decimal_places=2
     )
 
-    image = models.ImageField(
-        upload_to='menu/',
-        blank=True,
-        null=True
-    )
+    image = CloudinaryField(
+    'image',
+    folder='menu/',
+    blank=True,
+    null=True
+)
 
     is_available = models.BooleanField(
         default=True
