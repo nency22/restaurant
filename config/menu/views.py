@@ -318,6 +318,10 @@ class CustomizationListCreateView(APIView):
         )
 
         return Response(serializer.data)
+    @extend_schema(
+            request=MenuItemCustomizationSerializer,
+            responses=MenuItemCustomizationSerializer
+        )
 
     def post(self, request, menu_item_id):
 
