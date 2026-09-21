@@ -12,7 +12,9 @@ from .serializers import (
     ReservationSerializer,
 )
 from .permissions import IsAdminRole
-from .services import create_reservation
+from .services import create_reservation 
+from drf_spectacular.utils import extend_schema
+
 
 
 class ReservationCreateView(APIView):
@@ -20,6 +22,9 @@ class ReservationCreateView(APIView):
     permission_classes = [
         IsAuthenticated
     ]
+    @extend_schema(
+                request=ReservationSerializer,
+                responses=ReservationSerializer)
 
     def post(self, request):
 
