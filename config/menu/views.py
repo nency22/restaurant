@@ -227,6 +227,9 @@ class MenuDetailView(APIView):
         serializer = MenuItemSerializer(menu_item)
 
         return Response(serializer.data)
+    @extend_schema(
+            request=MenuItemSerializer,
+            responses=MenuItemSerializer)
 
     def put(self, request, pk):
 
