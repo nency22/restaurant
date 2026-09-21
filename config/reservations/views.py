@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import extend_schema
 
 from .models import  Reservation
 from .serializers import (
@@ -64,6 +65,9 @@ class ReservationCreateView(APIView):
             },
             status=status.HTTP_201_CREATED
         )
+@extend_schema(
+        responses=ReservationSerializer(many=True)
+)
 class MyReservationListView(APIView):
 
       permission_classes = [
@@ -86,6 +90,9 @@ class MyReservationListView(APIView):
         return Response(
             serializer.data
         )
+@extend_schema(
+    responses=ReservationSerializer
+)
 
 class ReservationDetailView(APIView):
 
@@ -122,6 +129,11 @@ class ReservationDetailView(APIView):
         return Response(
             serializer.data
         )
+@extend_schema(
+    request=None,
+    responses={200: dict}
+)
+       
 class CancelReservationView(APIView):
 
     permission_classes = [
@@ -179,6 +191,9 @@ class CancelReservationView(APIView):
                 )
             }
         )
+@extend_schema(
+    responses=ReservationSerializer(many=True)
+)   
 class AdminReservationListView(APIView):
 
     permission_classes = [
@@ -204,6 +219,10 @@ class AdminReservationListView(APIView):
         return Response(
             serializer.data
         )
+@extend_schema(
+    request=dict,
+    responses=dict
+)    
 class AdminReservationStatusView(APIView):
 
     permission_classes = [
